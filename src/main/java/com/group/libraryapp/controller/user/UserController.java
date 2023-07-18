@@ -3,9 +3,10 @@ package com.group.libraryapp.controller.user;
 import com.group.libraryapp.dto.user.request.UserCreateRequest;
 import com.group.libraryapp.dto.user.request.UserUpdateRequest;
 import com.group.libraryapp.dto.user.response.UserResponse;
-import com.group.libraryapp.service.UserService;
-import org.springframework.jdbc.core.JdbcTemplate;
+import com.group.libraryapp.service.fruit.FruitService;
+import com.group.libraryapp.service.user.UserService;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,9 +16,11 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final FruitService fruitService;
 
-    public UserController(JdbcTemplate jdbcTemplate){
-        this.userService = new UserService(jdbcTemplate);
+    public UserController(UserService userService, @Qualifier("main") FruitService fruitService){
+        this.userService = userService;
+        this.fruitService = fruitService;
     }
     @PostMapping("/user")
     public void saveUser(@RequestBody UserCreateRequest request){
