@@ -16,11 +16,9 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
-    private final FruitService fruitService;
 
-    public UserController(UserService userService, @Qualifier("main") FruitService fruitService){
+    public UserController(UserService userService){
         this.userService = userService;
-        this.fruitService = fruitService;
     }
     @PostMapping("/user")
     public void saveUser(@RequestBody UserCreateRequest request){
