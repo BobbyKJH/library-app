@@ -24,7 +24,6 @@ public class UserServiceV2 {
     @Transactional
     public void saveUser(UserCreateRequest request){
         User user = userRepository.save(new User(request.getName(), request.getAge()));
-        user.getId();
     }
 
     /** 조회 */
